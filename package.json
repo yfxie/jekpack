@@ -1,6 +1,7 @@
 {
   "name": "jekpack",
   "bin": "./bin/index.js",
+  "version": "1.0.0",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
@@ -35,7 +36,8 @@
   "scripts": {
     "dev-server": "webpack-dev-server --config config/webpack/development.js --disableHostCheck=true ",
     "dev": "concurrently npm:dev-*",
-    "build": "node config/webpack/build.js"
+    "build": "node config/webpack/build.js",
+    "release": "standard-version"
   },
   "license": "MIT"
 }
