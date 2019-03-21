@@ -25,6 +25,9 @@ const entryGenerator = () => {
 module.exports = {
   context: JEKPACK_PATH,
   entry: entryGenerator,
+  output: {
+    publicPath: '/assets/',
+  },
   module: {
     rules: [
       {
@@ -33,7 +36,7 @@ module.exports = {
           devMode ? 'style-loader' : MiniCSSExtractPlugin.loader,
           'css-loader',
           { loader: 'postcss-loader', options: { config: { path: JEKPACK_PATH } } },
-          'sass-loader'
+          { loader: 'sass-loader', options: { includePaths: [path.join(ASSET_PATH, 'stylesheets')] } },
         ]
       },
       {
@@ -42,7 +45,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: 'assets/images/[name].[hash:8].[ext]',
+              name: 'images/[name].[hash:8].[ext]',
               limit: 4096,
             },
           },
@@ -60,10 +63,11 @@ module.exports = {
   plugins: [
     new FixStyleOnlyEntriesPlugin(),
     new MiniCSSExtractPlugin({
-      filename: '[name]-[hash].css',
+      filename: '[name]-[chunkhash].css',
     }),
     new WebpackAssetsManifest({
       writeToDisk: true,
+      publicPath: true,
     }),
   ],
 };

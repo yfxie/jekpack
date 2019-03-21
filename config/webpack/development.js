@@ -12,7 +12,6 @@ module.exports = merge(baseConfig, {
   devtool: 'inline-source-map',
   output: {
     path: path.join(APP_PATH, 'tmp/dist/assets'),
-    publicPath: '/'
   },
   devServer: {
     open: true,

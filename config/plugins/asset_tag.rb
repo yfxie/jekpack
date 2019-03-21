@@ -19,7 +19,7 @@ module Jekyll
       if path_ext == '.js'
         "<script src=\"#{path}\"></script>"
       elsif path_ext == '.css'
-        "<link ref=\"stylesheet\" href=\"#{path}\"/>"
+        %Q(<link rel="stylesheet" type="text/css" href="#{path}">)
       else
         path
       end

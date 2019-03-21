@@ -17,8 +17,7 @@ module Jekyll
       @ext = File.extname(logical_path)
       @context = context
       wait_manifest
-      path = find!(logical_path)
-      "#{prefix}#{path}"
+      find!(logical_path)
     rescue MissingEntryError => e
       if is_production?
         raise e
@@ -63,10 +62,6 @@ module Jekyll
         end
         Pathname.new(path)
       end
-    end
-
-    def prefix
-      is_production? ? '/assets/' : '/'
     end
 
     def is_production?
