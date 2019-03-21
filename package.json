@@ -1,5 +1,5 @@
 {
-  "name": "jekpack",
+  "name": "@bincode/jekpack",
   "bin": "./bin/index.js",
   "version": "1.0.0",
   "devDependencies": {
