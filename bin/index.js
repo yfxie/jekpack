@@ -6,6 +6,10 @@ const execSync = require('child_process').execSync;
 const JEKPACK_PATH = path.join(__dirname, '..');
 const APP_PATH = process.cwd();
 const s3EasyDeploy = require('s3-easy-deploy');
+const commands = require('../lib/commands');
+
+process.env.JEKPACK_CONTEXT = process.cwd();
+process.env.JEKPACK_ROOT = JEKPACK_PATH;
 
 require('dotenv').config({ path: path.resolve(APP_PATH, '.env') });
 
@@ -13,33 +17,30 @@ program
   .command('dev')
   .action(() => {
     concurrently([
-      `node ${path.join(JEKPACK_PATH, 'bin/webpack-dev-server.js')}`,
-      `node ${path.join(JEKPACK_PATH, 'bin/jekyll-watch.js')}`
+      { name: 'jekyll', command: `jekpack jekyll --watch`, prefixColor: 'blue'},
+      { name: 'webpack-dev-server', command: `node ${path.join(JEKPACK_PATH, 'bin/webpack-dev-server.js')}`, prefixColor: 'green'},
     ],{
-      prefix: 'jekpack',
       killOthers: ['failure', 'success'],
     }).then(() => {
-
     }, () => {
-
     });
-
   });
+
 program
   .command('jekyll')
-  .action(() => {
-    execSync(`node ${path.join(JEKPACK_PATH, 'bin/jekyll-watch.js')}`, {
-      stdio: 'inherit'
-    });
+  .option('-s, --source-path [path]', 'source path', path.join(process.env.JEKPACK_CONTEXT, 'src'))
+  .option('-d, --dest-path [path]', 'destination path', path.join(process.env.JEKPACK_CONTEXT, 'tmp/dist'))
+  .option('--watch', 'watch mode')
+  .action((options) => {
+    commands.jekyll(options.sourcePath, options.destPath, options);
   });
 
 program
   .command('build')
-  .action(() => {
-    execSync(`APP_PATH=${APP_PATH} node bin/build.js`, {
-      cwd: JEKPACK_PATH,
-      stdio: 'inherit'
-    });
+  .option('-s, --source-path [path]', 'source path', path.join(process.env.JEKPACK_CONTEXT, 'src'))
+  .option('-d, --dest-path [path]', 'destination path', path.join(process.env.JEKPACK_CONTEXT, 'dist'))
+  .action((options) => {
+    commands.build(options.sourcePath, options.destPath, options);
   });
 
 program

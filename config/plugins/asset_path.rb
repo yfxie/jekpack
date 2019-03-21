@@ -43,29 +43,8 @@ module Jekyll
     end
 
     private
-    def source_path
-      context.environments[0]['site']['source']
-    end
-
-    def app_root
-      @app_root ||= begin
-        path = source_path
-        loop do
-          file_path = File.join(path, 'package.json')
-          if File.file?(file_path)
-            if Pathname.new(path).root?
-              raise "Cant find the app_root"
-            end
-            break
-          end
-          path = File.expand_path('..', path)
-        end
-        Pathname.new(path)
-      end
-    end
-
-    def is_production?
-      ENV['JEKYLL_ENV'] == 'production'
+    def dist_path
+      context.environments.first['site']['destination']
     end
 
     def handle_missing_entry(name)
@@ -91,12 +70,12 @@ module Jekyll
       end
     end
 
-    def public_output_path
-      is_production? ? app_root.join('dist') : app_root.join('tmp/dist')
-    end
-
     def public_manifest_path
-      public_output_path.join('assets/manifest.json')
+      if ENV['JEKPACK_MANIFEST_PATH']
+        Pathname.new(ENV['JEKPACK_MANIFEST_PATH'])
+      else
+        Pathname.new(dist_path).join('assets/manifest.json')
+      end
     end
   end
 end

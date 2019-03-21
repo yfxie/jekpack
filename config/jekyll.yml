@@ -23,4 +23,4 @@ source: src
 exclude: ["assets"]
 destination: tmp/dist
 plugins_dir: config/plugins
-keep_files: ["assets/manifest.json"]
+keep_files: ["assets"]
