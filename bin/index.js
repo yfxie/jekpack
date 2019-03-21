@@ -53,7 +53,7 @@ program
       concurrentRequests: 30,
       publicRoot: path.join(APP_PATH, 'dist'),
     };
-    if (options.acl) {
+    if (options.private) {
       config.acl = 'private';
     }
     if (options.cloudFrontId) {
