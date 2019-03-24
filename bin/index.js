@@ -14,6 +14,12 @@ process.env.JEKPACK_ROOT = JEKPACK_PATH;
 require('dotenv').config({ path: path.resolve(APP_PATH, '.env') });
 
 program
+  .command('new <project-name>')
+  .action(projectName => {
+    commands.new(projectName);
+  });
+
+program
   .command('dev')
   .action(() => {
     concurrently([

@@ -14,8 +14,12 @@
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
     "dotenv": "^7.0.0",
+    "ejs": "^2.6.1",
     "execa": "^1.0.0",
     "file-loader": "^3.0.1",
+    "fs-extra": "^7.0.1",
+    "globby": "^9.1.0",
+    "jest": "^24.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
@@ -25,6 +29,7 @@
     "rimraf": "^2.6.3",
     "s3-easy-deploy": "^1.1.0",
     "sass-loader": "^7.1.0",
+    "semver": "^5.6.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
@@ -38,7 +43,8 @@
     "dev-server": "webpack-dev-server --config config/webpack/development.js --disableHostCheck=true ",
     "dev": "concurrently npm:dev-*",
     "build": "node config/webpack/build.js",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "jest"
   },
   "license": "MIT"
 }
