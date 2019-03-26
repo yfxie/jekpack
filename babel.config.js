@@ -13,4 +13,19 @@ const presets = [
   ],
 ];
 
-module.exports = { presets };
+const testPresets = [
+  [
+    '@babel/preset-env',
+    {
+      targets: {
+        node: 'current',
+      },
+    },
+  ],
+];
+
+module.exports = api => {
+  const isTest = api.env('test');
+  const presets = isTest ? testPresets : presets;
+  return { presets };
+};
