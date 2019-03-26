@@ -11,7 +11,7 @@ module.exports = ({ files, options }) => {
 
   for (const rawPath of _files) {
     const sourcePath = path.resolve(source, rawPath);
-    const template = fs.readFileSync(sourcePath, 'utf-8')
+    const template = fs.readFileSync(sourcePath, 'utf-8');
     files[rawPath] = ejs.render(template, options.templateData);
   }
 };
