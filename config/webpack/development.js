@@ -1,22 +1,21 @@
 const path = require('path');
-const getWebpackConfigPath = require('../../lib/utils/get-webpack-config-path');
-const baseConfig = require(getWebpackConfigPath('config/webpack/base.js'));
+const getConfigFilePath = require(path.resolve(process.env.JEKPACK_ROOT, 'lib/utils/getConfigFilePath'));
+const baseConfig = require(getConfigFilePath('config/webpack/base.js'));
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
-const APP_PATH = process.env.APP_PATH || process.cwd();
-const ASSET_PATH = path.join(APP_PATH, 'src/assets');
+const ASSET_PATH = path.resolve(process.env.JEKPACK_CONTEXT, 'src/assets');
 
 module.exports = merge(baseConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   output: {
-    path: path.join(APP_PATH, 'tmp/dist/assets'),
+    path: path.resolve(process.env.JEKPACK_CONTEXT, 'tmp/dist/assets'),
   },
   devServer: {
-    open: true,
+    open: !Boolean(process.env.JEKPACK_TEST),
     hot: true,
-    contentBase: path.join(APP_PATH, 'tmp/dist'),
+    contentBase: path.join(process.env.JEKPACK_CONTEXT, 'tmp/dist'),
     watchContentBase: true,
     stats: 'minimal'
   },

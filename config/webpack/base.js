@@ -1,13 +1,14 @@
 const path = require('path');
 const glob = require('glob');
-const devMode = process.env.NODE_ENV !== 'production';
 
+const getConfigFilePath = require(path.resolve(process.env.JEKPACK_ROOT, 'lib/utils/getConfigFilePath'));
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
-const APP_PATH = process.env.APP_PATH || process.cwd();
-const ASSET_PATH = path.join(APP_PATH, 'src/assets');
-const JEKPACK_PATH = path.join(__dirname, '../..');
+const ASSET_PATH = path.join(process.env.JEKPACK_CONTEXT, 'src/assets');
+
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 const entryGenerator = () => {
   const pageEntries = glob.sync('**/main.{js,scss}', {
@@ -23,7 +24,7 @@ const entryGenerator = () => {
 };
 
 module.exports = {
-  context: JEKPACK_PATH,
+  context: process.env.JEKPACK_ROOT,
   entry: entryGenerator,
   output: {
     publicPath: '/assets/',
@@ -35,7 +36,14 @@ module.exports = {
         use: [
           devMode ? 'style-loader' : MiniCSSExtractPlugin.loader,
           'css-loader',
-          { loader: 'postcss-loader', options: { config: { path: JEKPACK_PATH } } },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.dirname(getConfigFilePath('postcss.config.js')),
+              }
+            }
+          },
           { loader: 'sass-loader', options: { includePaths: [path.join(ASSET_PATH, 'stylesheets')] } },
         ]
       },
@@ -56,8 +64,8 @@ module.exports = {
   resolve: {
     modules: [
       ASSET_PATH,
-      path.resolve(JEKPACK_PATH, 'node_modules'),
-      path.resolve(APP_PATH, 'node_modules'),
+      path.resolve(process.env.JEKPACK_CONTEXT, 'node_modules'),
+      path.resolve(process.env.JEKPACK_ROOT, 'node_modules'),
     ],
   },
   plugins: [
