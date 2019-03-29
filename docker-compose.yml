@@ -1,0 +1,11 @@
+version: '3'
+services:
+  jekpack:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - /jekpack/node_modules
+      - ./:/jekpack:cached
+
