@@ -24,6 +24,8 @@ module.exports = (projectName, options = {}) => {
     ({
       execute,
       projectRoot,
+      src: path.resolve(projectRoot, 'src'),
+      dist: path.resolve(projectRoot, 'dist'),
     })
   );
 };
