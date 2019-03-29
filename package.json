@@ -2,15 +2,14 @@
   "name": "@bincode/jekpack",
   "bin": "./bin/index.js",
   "version": "1.0.1",
-  "devDependencies": {
+  "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "autoprefixer": "^9.4.10",
-    "aws-sdk": "^2.425.0",
-    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "chalk": "^2.4.2",
+    "command-exists": "^1.2.8",
     "commander": "^2.19.0",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
@@ -21,15 +20,11 @@
     "fs-extra": "^7.0.1",
     "globby": "^9.1.0",
     "inquirer": "^6.2.2",
-    "jest": "^24.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10",
-    "nyc": "^13.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ora": "^3.2.0",
     "postcss-loader": "^3.0.0",
-    "puppeteer": "^1.13.0",
     "rimraf": "^2.6.3",
     "s3-easy-deploy": "^1.1.0",
     "sass-loader": "^7.1.0",
@@ -43,10 +38,12 @@
     "webpack-fix-style-only-entries": "^0.2.0",
     "webpack-merge": "^4.2.1"
   },
+  "devDependencies": {
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "puppeteer": "^1.13.0"
+  },
   "scripts": {
-    "dev-server": "webpack-dev-server --config config/webpack/development.js --disableHostCheck=true ",
-    "dev": "concurrently npm:dev-*",
-    "build": "node config/webpack/build.js",
     "release": "standard-version",
     "test": "jest --coverage"
   },
