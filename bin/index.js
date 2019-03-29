@@ -31,7 +31,7 @@ program
       { name: 'webpack-dev-server', command: `jekpack webpack-dev-server`, prefixColor: 'green' },
     ],{
       killOthers: ['failure', 'success'],
-    }).catch(() => {
+    }).catch((e) => {
       process.exit(1);
     });
   });
@@ -85,6 +85,20 @@ program
       ...(options.cloudFrontId ? { cloudFrontId: options.cloudFrontId } : {}),
     };
     s3EasyDeploy.deploy(config);
+  });
+
+program
+  .command('check')
+  .description('Verifies that the dependencies required by jekpack are installed.')
+  .action(() => {
+    commands.check();
+  });
+
+program
+  .command('bundle')
+  .description('Install the ruby dependencies.')
+  .action(() => {
+    commands.bundle();
   });
 
 program.parse(process.argv);
