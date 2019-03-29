@@ -3,10 +3,6 @@ const path = require('path');
 const resolveCommand = cmd => ['', '', ...cmd.split(' ')];
 
 describe('test CLI', () => {
-  beforeEach(() => {
-    jest.resetModules();
-  });
-
   test('the new command', async() => {
     const commands = require('lib/commands');
     const bin = require('bin');
@@ -104,6 +100,29 @@ describe('test CLI', () => {
       cloudFrontId: 'abc',
     });
   });
+
+  test('the check command', async() => {
+    jest.mock('lib/commands', () => ({ check: jest.fn(), }));
+
+    const commands = require('lib/commands');
+    const bin = require('bin');
+
+    await bin.parse(resolveCommand('check'));
+
+    expect(commands.check).toHaveBeenCalled();
+  });
+
+  test('the bundle command', async() => {
+    jest.mock('lib/commands', () => ({ bundle: jest.fn(), }));
+
+    const commands = require('lib/commands');
+    const bin = require('bin');
+
+    await bin.parse(resolveCommand('bundle'));
+
+    expect(commands.bundle).toHaveBeenCalled();
+  });
+
 });
 
 

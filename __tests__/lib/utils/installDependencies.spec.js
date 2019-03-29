@@ -1,7 +1,6 @@
 
 describe('installDependencies', () => {
   beforeEach(() => {
-    jest.resetModules();
     jest.mock('execa');
   });
 

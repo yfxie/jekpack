@@ -8,16 +8,6 @@ const inquirer = require('inquirer');
 const installDependencies = require('lib/utils/installDependencies');
 
 describe('test the new command', () => {
-  const ORIGINAL_ENV = process.env;
-
-  beforeEach(() => {
-    process.env = { ...ORIGINAL_ENV };
-  });
-
-  afterEach(() => {
-    process.env = ORIGINAL_ENV;
-  });
-
   test('create a new project', async() => {
     await commands.new('test-new', { force: true, cwd: process.env.JEKPACK_TEST_CWD });
   });

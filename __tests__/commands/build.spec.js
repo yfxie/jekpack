@@ -5,8 +5,6 @@ const fs = require('fs-extra');
 describe('test the build command', () => {
   let testProject;
   beforeEach(async() => {
-    jest.resetModules();
-
     jest.mock('webpack', () => jest.fn((config, cb) => cb(null, 'foo')));
     jest.mock('rimraf', () => jest.fn((path, cb) => cb()));
     jest.mock('lib/commands/jekyll');

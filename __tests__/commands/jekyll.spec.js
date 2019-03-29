@@ -7,7 +7,6 @@ describe('test the jekyll command', () => {
   let testProject;
 
   beforeEach(async() => {
-    jest.resetModules();
     testProject = await create('test-commands-jekyll');
     process.env.JEKPACK_CONTEXT = testProject.projectRoot;
   });
