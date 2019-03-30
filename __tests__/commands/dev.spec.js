@@ -4,12 +4,12 @@ const create = require('createTestProject');
 const testDev = require('testDev');
 
 test('dev', async() => {
-  const project = await create('test-dev');
+  const project = await create('test-commands-dev');
 
   await testDev(
     () => project.execute('jekpack', ['dev']),
-    ({ page }) => {
-
+    async ({ page }) => {
+      // Todo: E2E test
     }
   );
 });

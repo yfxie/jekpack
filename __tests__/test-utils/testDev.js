@@ -20,11 +20,15 @@ module.exports = async(startDev, testCB, options = {}) => {
       if (urlMatch) {
         let url = urlMatch[0];
 
-        browser = browser || await puppeteer.launch({});
+        browser = browser || await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          executablePath: process.env.CHROME_BIN || null,
+        });
         const page = await browser.newPage();
         await page.goto(url);
 
         await testCB({ browser, page, });
+        await browser.close();
         exit();
         resolve();
       }

@@ -2,6 +2,10 @@ const path = require('path');
 const create = require('createTestProject');
 const fs = require('fs-extra');
 
+jest.spyOn(console, 'error').mockImplementation(jest.fn());
+jest.spyOn(console, 'log').mockImplementation(jest.fn());
+jest.spyOn(process.stdout, 'write').mockImplementation(jest.fn());
+
 describe('test the build command', () => {
   let testProject;
   beforeEach(async() => {
@@ -76,9 +80,13 @@ describe('test the build command', () => {
       jest.unmock('webpack');
       jest.unmock('lib/commands/jekyll');
       jest.unmock('mini-css-extract-plugin');
+      jest.mock('execa');
     });
 
     test('', async() => {
+      const execa = require('execa');
+      const originalExeca = jest.requireActual('execa');
+      execa.mockImplementation((cmd, args, options) => originalExeca(cmd, args, { ...options, stdio: 'pipe' }));
       const commands = require('lib/commands');
       await commands.build(testProject.src, testProject.dist);
 

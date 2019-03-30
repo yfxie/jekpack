@@ -3,7 +3,7 @@ const path = require('path');
 const resolveCommand = cmd => ['', '', ...cmd.split(' ')];
 
 describe('test CLI', () => {
-  test('the new command', async() => {
+  test('the new command', () => {
     const commands = require('lib/commands');
     const bin = require('bin');
 
@@ -15,10 +15,11 @@ describe('test CLI', () => {
     expect(commands.new).toHaveBeenCalledWith('test-project', { force: true });
   });
 
-  test('the dev command', async() => {
+  test('the dev command', () => {
+    jest.mock('concurrently', () => jest.fn().mockResolvedValue());
+
     const concurrently = require('concurrently');
     const bin = require('bin');
-    jest.mock('concurrently', () => jest.fn().mockResolvedValue());
 
     bin.parse(resolveCommand('dev'));
 
@@ -29,14 +30,16 @@ describe('test CLI', () => {
 
   test('the dev command with exception', async() => {
     const mockExit = jest.spyOn(process, 'exit').mockImplementation(jest.fn());
-    const bin = require('bin');
     jest.mock('concurrently', () => jest.fn().mockRejectedValue(new Error('error')));
 
+    const bin = require('bin');
+
     await bin.parse(resolveCommand('dev'));
+
     expect(mockExit).toHaveBeenCalledWith(1);
   });
 
-  test('the jekyll command', async() => {
+  test('the jekyll command', () => {
     jest.spyOn(process, 'cwd').mockReturnValue('/abc');
     jest.mock('lib/commands', () => ({ jekyll: jest.fn(), }));
 
@@ -47,7 +50,7 @@ describe('test CLI', () => {
     expect(commands.jekyll).toHaveBeenCalledWith('/abc/src', '/abc/tmp/dist', { watch: false })
   });
 
-  test('the webpack-dev-server command', async() => {
+  test('the webpack-dev-server command', () => {
     jest.spyOn(process, 'cwd').mockReturnValue(process.env.JEKPACK_ROOT);
     jest.mock('lib/commands', () => ({ webpackDevServer: jest.fn(), }));
 
@@ -63,7 +66,7 @@ describe('test CLI', () => {
     expect(commands.webpackDevServer).toHaveBeenCalledWith(specifiedConfig);
   });
 
-  test('the build command', async() => {
+  test('the build command', () => {
     jest.spyOn(process, 'cwd').mockReturnValue('/abc');
     jest.mock('lib/commands', () => ({ build: jest.fn(), }));
 
@@ -77,7 +80,7 @@ describe('test CLI', () => {
     expect(commands.build).toHaveBeenCalledWith('/abc/input', '/abc/output', {});
   });
 
-  test('the deploy command', async() => {
+  test('the deploy command', () => {
     jest.spyOn(process, 'cwd').mockReturnValue('/abc');
     jest.mock('s3-easy-deploy', () => ({ deploy: jest.fn(), }));
 
@@ -101,24 +104,24 @@ describe('test CLI', () => {
     });
   });
 
-  test('the check command', async() => {
+  test('the check command', () => {
     jest.mock('lib/commands', () => ({ check: jest.fn(), }));
 
     const commands = require('lib/commands');
     const bin = require('bin');
 
-    await bin.parse(resolveCommand('check'));
+     bin.parse(resolveCommand('check'));
 
     expect(commands.check).toHaveBeenCalled();
   });
 
-  test('the bundle command', async() => {
+  test('the bundle command', () => {
     jest.mock('lib/commands', () => ({ bundle: jest.fn(), }));
 
     const commands = require('lib/commands');
     const bin = require('bin');
 
-    await bin.parse(resolveCommand('bundle'));
+     bin.parse(resolveCommand('bundle'));
 
     expect(commands.bundle).toHaveBeenCalled();
   });
