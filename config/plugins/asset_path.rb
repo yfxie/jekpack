@@ -2,8 +2,10 @@ require 'open-uri'
 
 module Jekyll
   class AssetPathTag < Liquid::Tag
-    class MissingEntryError < StandardError; end
     class ManifestTimeout < StandardError; end
+
+    JAVASCRIPT_EXTENSIONS = ['.js']
+    STYLESHEET_EXTENSIONS = ['.css']
 
     attr_accessor :markup, :ext, :context
 
@@ -18,20 +20,24 @@ module Jekyll
       @context = context
       wait_manifest
       find!(logical_path)
-    rescue MissingEntryError => e
-      if is_production?
-        raise e
-      else
-        %Q(<script>alert('#{e.message}')</script>).gsub(/\n/, '')
-      end
     end
 
     def find!(name)
-      if ext == '.js'
-        data["javascripts/#{name}"] || handle_missing_entry(name)
+      keys = determine_keys(name)
+      data.values_at(*keys).find(&:itself) || handle_missing_entry(name)
+    end
+
+    def determine_keys(name)
+      keys = []
+      if JAVASCRIPT_EXTENSIONS.include?(ext)
+        keys << "javascripts/#{name}"
+      elsif STYLESHEET_EXTENSIONS.include?(ext)
+        keys << "stylesheets/#{name}"
+        keys << "stylesheets/#{name}".gsub('.css', '.js')
       else
-        data["stylesheets/#{name}"] || data["stylesheets/#{name}".gsub('.css', '.js')] || handle_missing_entry(name)
+        keys << "media/#{name}"
       end
+      keys.map{ |key| key.gsub(/\/+/, '/') }
     end
 
     def data
@@ -43,18 +49,32 @@ module Jekyll
     end
 
     private
+    def is_production?
+      ENV['NODE_ENV'] == 'production'
+    end
+
+    def config
+      @config ||= context.registers[:site].config
+    end
+
+    def source_path
+      config['source']
+    end
+
     def dist_path
-      context.environments.first['site']['destination']
+      config['destination']
     end
 
     def handle_missing_entry(name)
-      raise MissingEntryError, missing_file_from_manifest_error(name)
+      raise IOError, missing_file_message(name)
     end
 
-    def missing_file_from_manifest_error(name)
+    def missing_file_message(name)
+      sources = %w(assets/stylesheets assets/javascripts assets/media)
+                  .map{ |folder| Pathname.new(source_path).join(folder).to_s }
+
       <<-MSG
-      #{name} not found. the manifest as following: 
-      #{JSON.pretty_generate(data)}
+        Count not locate the assets file '#{name}' in #{sources}. For JS and CSS files must be named main.{js,scss}.
       MSG
     end
 

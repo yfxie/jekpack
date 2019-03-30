@@ -17,7 +17,7 @@ module Jekyll
     def tag(path)
       path_ext = File.extname(path)
       if path_ext == '.js'
-        "<script src=\"#{path}\"></script>"
+        %Q(<script src="#{path}"></script>)
       elsif path_ext == '.css'
         %Q(<link rel="stylesheet" type="text/css" href="#{path}">)
       else

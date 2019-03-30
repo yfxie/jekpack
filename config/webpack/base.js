@@ -18,8 +18,16 @@ const entryGenerator = () => {
     return output;
   }, {});
 
+  const mediaEntries = glob.sync('media/**/*', {
+    cwd: ASSET_PATH,
+  }).reduce((output, path) => {
+    output[path] = path;
+    return output;
+  }, {});
+
   return {
     ...pageEntries,
+    ...mediaEntries,
   }
 };
 
@@ -53,7 +61,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: 'images/[name].[hash:8].[ext]',
+              name: 'media/[name].[hash:8].[ext]',
               limit: 4096,
             },
           },
