@@ -5,6 +5,7 @@ const path = require('path');
 const s3EasyDeploy = require('s3-easy-deploy');
 const getConfigFilePath = require('../lib/utils/getConfigFilePath');
 const commands = require('../lib/commands');
+const fs = require('fs-extra');
 const pkg = require('../package');
 
 process.env.JEKPACK_CONTEXT = process.cwd();
@@ -25,9 +26,16 @@ program
 
 program
   .command('dev')
-  .action(() => {
+  .option('-s, --source-path <path>', 'source path', 'src')
+  .option('-d, --dest-path <path>', 'destination path', 'tmp/dist')
+  .action((options) => {
+    const sourcePath = path.resolve(process.env.JEKPACK_CONTEXT, options.sourcePath);
+    const destPath = path.resolve(process.env.JEKPACK_CONTEXT, options.destPath);
+
+    fs.removeSync(destPath);
+
     return concurrently([
-      { name: 'jekyll', command: `jekpack jekyll --watch`, prefixColor: 'blue'},
+      { name: 'jekyll', command: `jekpack jekyll -s ${sourcePath} -d ${destPath} --watch`, prefixColor: 'blue'},
       { name: 'webpack-dev-server', command: `jekpack webpack-dev-server`, prefixColor: 'green' },
     ],{
       killOthers: ['failure', 'success'],
