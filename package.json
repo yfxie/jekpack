@@ -57,5 +57,9 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yfxie/jekpack.git"
+  },
   "license": "MIT"
 }
