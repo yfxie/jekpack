@@ -13,7 +13,6 @@ module.exports = merge(baseConfig, {
     path: path.resolve(process.env.JEKPACK_CONTEXT, 'tmp/dist/assets'),
   },
   devServer: {
-    open: !Boolean(process.env.JEKPACK_TEST),
     hot: true,
     contentBase: path.join(process.env.JEKPACK_CONTEXT, 'tmp/dist'),
     watchContentBase: true,
