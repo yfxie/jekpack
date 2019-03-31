@@ -9,6 +9,7 @@ cache:
     - /home/travis/.rvm/
 install:
   - yarn
+  - yarn global add codecov
   - bundle install
 script:
-  - yarn test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - yarn test && codecov
