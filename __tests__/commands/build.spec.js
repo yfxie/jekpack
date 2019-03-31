@@ -1,10 +1,12 @@
-const path = require('path');
-const create = require('createTestProject');
-const fs = require('fs-extra');
+jest.setTimeout(60000);
 
 jest.spyOn(console, 'error').mockImplementation(jest.fn());
 jest.spyOn(console, 'log').mockImplementation(jest.fn());
 jest.spyOn(process.stdout, 'write').mockImplementation(jest.fn());
+
+const path = require('path');
+const create = require('createTestProject');
+const fs = require('fs-extra');
 
 describe('test the build command', () => {
   let testProject;
