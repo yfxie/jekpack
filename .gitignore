@@ -1,6 +1,7 @@
 /src
-dist
-tmp
+/dist
+/__tests__/tmp/*
+!/__tests__/tmp/.keep
 *.log
 .idea
 node_modules
