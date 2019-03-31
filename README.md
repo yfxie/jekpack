@@ -8,7 +8,7 @@ Jekpack is for multi pages static sites.
 If you prefer the SPA(single page application), 
 Webpack + HtmlWebpackPlugin might be another better choice.
 
-Why
+Highlights
 ---
 
 **Zero config**
@@ -28,8 +28,7 @@ The minimal file tree might look like the following:
 │   ├── assets      <= Webpack is responsible to this folder
 │   └── index.html
 ├── node_modules
-├── package.json
-└── yarn.lock
+└── package.json
 ```
 
 **Flexible**
@@ -115,7 +114,17 @@ jekpack deploy your-bucket-name --cloud-front-id your-cloud-front-id
 Common Questions
 ---
 
-**What is about the `src/assets/media` folder?**
+**How can I include the output CSS and JS files?**
+
+As previously mentioned, only files named `main.js` or `main.scss` will be considered entry files. 
+Follow this convention, unnecessary chunks will not be compiled and it's obvious to know which files are entrypoints.
+In HTML, you can use the syntax like `{% asset_tag some/js/file.css %}`, then Jekyll will parse it to correspond result.
+
+You might ask a question, why `<script src="..."></script>` will be the output for CSS files.
+A simple answer is to keep the Webpack HRM function working fine. When you build distribution, the result will turn to `<link rel="stylesheet" href="..."/>`.  
+
+
+**What is the `src/assets/media` folder?**
 
 This folder is prepared for static assets like images.
 Assume you have an image located at `src/assets/media/jekpack.jpg`.
@@ -156,4 +165,10 @@ module.exports = webpackMerge(config, {
 Just create the config file at `config/jekyll.yml`.
 Jekpack will load both default and your configs at the same time.
 
-Any question not mentioned above? Open an issue.
+Any question not mentioned above? [Open an issue](https://github.com/yfxie/jekpack/issues).
+
+
+License
+---
+
+MIT
