@@ -7,3 +7,4 @@ exclude: ["assets"]
 destination: tmp/dist
 plugins_dir: config/plugins
 keep_files: ["assets"]
+permalink: pretty
