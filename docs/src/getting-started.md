@@ -39,7 +39,9 @@ All files located at `assets` folder are managed by webpack.
 For all files named `main.js`(inside assets/javascripts) and 
 `main.scss`(inside assets/stylesheets) will be considered as entry files,
 these files will be pack via webpack. 
-In HTML, include these files via `{% asset_tag main.css %}`, `{% asset_tag main.js%}`.
+In HTML, include these files via
+`{% raw %}{% asset_tag main.css %}{% endraw %}`, 
+`{% raw %}{% asset_tag main.js%}{% endraw %}`.
 For example, a file located at `src/assets/stylesheets/some/page/main.scss` can be included via: 
 ```liquid
 {% raw %}{% asset_tag some/page/main.css %}{% endraw %} 
