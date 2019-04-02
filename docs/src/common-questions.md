@@ -3,6 +3,10 @@ layout: default
 page_name: Common Questions
 ---
 
+**Have any example built with Jekpack?**
+
+The documentation site you are reading is built with Jekpack. see [the source code](https://github.com/yfxie/jekpack/tree/master/docs).
+
 **How can I include the output CSS and JS files?**
 
 As previously mentioned, only files named `main.js` or `main.scss` will be considered entry files. 
