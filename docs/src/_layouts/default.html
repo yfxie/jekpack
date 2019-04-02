@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Jekpack - {{ page.page_name }}</title>
+  {% asset_tag main.css %}
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-9">
+        {% include header.html %}
+        {{ content }}
+        {% include footer.html %}
+      </div>
+    </div>
+  </div>
+  {% asset_tag main.js %}
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

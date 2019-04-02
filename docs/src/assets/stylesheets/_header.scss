@@ -1,0 +1,30 @@
+header {
+  margin: 2em 0 2em 0;
+}
+
+.hero-title {
+  text-align: center;
+}
+
+.menu-list {
+  @include list-unstyled;
+  display: flex;
+  justify-content: center;
+  margin: 1em 0 1em 0;
+}
+
+.menu-item {
+  & + & {
+    margin-left: 1em;
+  }
+}
+
+.menu-link {
+  display: block;
+  padding: .2em .75em;
+  background-color: #5bbef9;
+  border-radius: 14px;
+  @include plain-hover-focus {
+    color: $body-bg;
+  }
+}
