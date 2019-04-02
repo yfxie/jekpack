@@ -48,6 +48,7 @@
     "puppeteer": "^1.13.0"
   },
   "scripts": {
+    "docs:build": "cd docs && yarn build",
     "release": "standard-version",
     "test": "jest --coverage"
   },
@@ -60,5 +61,8 @@
     "type": "git",
     "url": "git://github.com/yfxie/jekpack.git"
   },
+  "keywords": [
+    "Jekpack", "Jekyll", "Webpack"
+  ],
   "license": "MIT"
 }
