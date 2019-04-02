@@ -41,7 +41,7 @@ module Jekyll
       end
       [
         normalize_page_path,
-        normalize_page_path.gsub('/index', ''),
+        normalize_page_path.gsub('index', ''),
       ].map{ |page_path| File.join(prefix, page_path, "main#{ext}") }
     end
 
