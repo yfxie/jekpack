@@ -23,7 +23,9 @@ header {
   display: block;
   padding: .2em .75em;
   background-color: #5bbef9;
-  border-radius: 14px;
+  border-radius: 1em;
+  min-width: 3em;
+  text-align: center;
   @include plain-hover-focus {
     color: $body-bg;
   }
