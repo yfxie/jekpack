@@ -19,6 +19,7 @@
     "file-loader": "^3.0.1",
     "fs-extra": "^7.0.1",
     "globby": "^9.1.0",
+    "hard-source-webpack-plugin": "^0.13.1",
     "inquirer": "^6.2.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
