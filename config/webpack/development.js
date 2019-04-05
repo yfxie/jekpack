@@ -16,7 +16,11 @@ module.exports = merge(baseConfig, {
     hot: true,
     contentBase: path.join(process.env.JEKPACK_CONTEXT, 'tmp/dist'),
     watchContentBase: true,
-    stats: 'minimal'
+    stats: {
+      all: false,
+      timings: true,
+      errors: true,
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
