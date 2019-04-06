@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.2](https://github.com/yfxie/jekpack/compare/v1.3.1...v1.3.2) (2019-04-06)
+
+
+### Bug Fixes
+
+* the new command doesn't create the media folder ([84c2a96](https://github.com/yfxie/jekpack/commit/84c2a96))
+
+
+
 ## [1.3.1](https://github.com/yfxie/jekpack/compare/v1.3.0...v1.3.1) (2019-04-06)
 
 
