@@ -6,7 +6,6 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const ASSET_PATH = path.join(process.env.JEKPACK_CONTEXT, 'src/assets');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 
 const devMode = process.env.NODE_ENV !== 'production';
@@ -85,14 +84,6 @@ module.exports = {
     new WebpackAssetsManifest({
       writeToDisk: true,
       publicPath: true,
-    }),
-    new HardSourceWebpackPlugin({
-      cacheDirectory: path.resolve(process.env.JEKPACK_CONTEXT, 'tmp/.cache/hard-source/[confighash]'),
-      environmentHash: {
-        root: process.env.JEKPACK_CONTEXT,
-        directories: [],
-        files: ['package-lock.json', 'yarn.lock']
-      }
     }),
   ],
 };
