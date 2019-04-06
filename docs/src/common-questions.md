@@ -37,17 +37,17 @@ Just create the config files with the same path:
 `config/webpack/production.js`.
 For each of them, return the config object with webpack specs.
 
-This example describes how to extend from the default config:
+This [example](https://github.com/yfxie/jekpack/tree/master/examples/extend-webpack-config) describes how to extend from the default config:
 ```js
 // hello-world/config/webpack/base.js
 const webpackMerge = require('webpack-merge'); // this module must be installed by yourself.
-const webpack = require('jekpack/node_modules/webpack');
-const defaultBaseConfig = require('jekpack/config/webpack/base');
- 
-module.exports = webpackMerge(config, {
+const webpack = require('webpack');
+const defaultBaseConfig = require('@bincode/jekpack/config/webpack/base');
+
+module.exports = webpackMerge(defaultBaseConfig, {
   plugins: [
     new webpack.ProvidePlugin({
-      jQuery: 'jquery',
+      $: 'jquery',
     }),
   ]
 });
