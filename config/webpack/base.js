@@ -4,9 +4,9 @@ const glob = require('glob');
 const getConfigFilePath = require(path.resolve(process.env.JEKPACK_ROOT, 'lib/utils/getConfigFilePath'));
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
 const ASSET_PATH = path.join(process.env.JEKPACK_CONTEXT, 'src/assets');
-
+const CopyPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -18,16 +18,9 @@ const entryGenerator = () => {
     return output;
   }, {});
 
-  const mediaEntries = glob.sync('media/**/*', {
-    cwd: ASSET_PATH,
-  }).reduce((output, path) => {
-    output[path] = path;
-    return output;
-  }, {});
 
   return {
     ...pageEntries,
-    ...mediaEntries,
   }
 };
 
@@ -40,7 +33,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           devMode ? 'style-loader' : MiniCSSExtractPlugin.loader,
           'css-loader',
@@ -67,6 +60,17 @@ module.exports = {
           },
         ]
       },
+      {
+        test: /\.(svg)(\?.*)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'media/[name].[hash:8].[ext]',
+            }
+          }
+        ]
+      }
     ]
   },
   resolve: {
@@ -77,13 +81,31 @@ module.exports = {
     ],
   },
   plugins: [
+    new ManifestPlugin({
+      writeToFileEmit: true,
+      map: (file) => {
+        file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
+        return file;
+      },
+    }),
+    new CopyPlugin([
+      {
+        from: path.resolve(ASSET_PATH, 'media'),
+        to: 'media/[name].[hash].[ext]',
+        toType: 'template',
+        transform(content) {
+          return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => manifest.assets[$1] || $1);
+        }
+      },
+    ], {
+      ignore: [
+        '.DS_Store',
+        '.gitkeep'
+      ]
+    }),
     new FixStyleOnlyEntriesPlugin(),
     new MiniCSSExtractPlugin({
       filename: '[name]-[chunkhash].css',
-    }),
-    new WebpackAssetsManifest({
-      writeToDisk: true,
-      publicPath: true,
     }),
   ],
 };
