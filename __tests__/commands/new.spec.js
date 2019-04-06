@@ -10,6 +10,12 @@ const installDependencies = require('lib/utils/installDependencies');
 describe('test the new command', () => {
   test('create a new project', async() => {
     await commands.new('test-new', { force: true, cwd: process.env.JEKPACK_TEST_CWD });
+    const projectRoot = path.resolve(process.env.JEKPACK_TEST_CWD, 'test-new');
+
+    expect(fs.existsSync(path.resolve(projectRoot, 'src'))).toBe(true);
+    expect(fs.existsSync(path.resolve(projectRoot, 'src/assets/javascripts'))).toBe(true);
+    expect(fs.existsSync(path.resolve(projectRoot, 'src/assets/stylesheets'))).toBe(true);
+    expect(fs.existsSync(path.resolve(projectRoot, 'src/assets/media'))).toBe(true);
   });
 
   test('should install dependencies unless test mode', async() => {

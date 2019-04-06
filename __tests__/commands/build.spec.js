@@ -23,7 +23,6 @@ describe('test the build command', () => {
       mock.loader = '';
       return mock;
     });
-    jest.mock('hard-source-webpack-plugin', () => jest.fn());
     testProject = await create('test-commands-build');
     process.env.JEKPACK_CONTEXT = testProject.projectRoot;
   });
@@ -82,7 +81,6 @@ describe('test the build command', () => {
       jest.unmock('webpack');
       jest.unmock('lib/commands/jekyll');
       jest.unmock('mini-css-extract-plugin');
-      jest.unmock('hard-source-webpack-plugin');
       jest.unmock('rimraf');
       jest.mock('execa');
     });
