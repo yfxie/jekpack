@@ -6,6 +6,7 @@ const fs = require('fs');
 module.exports = ({ files, options }) => {
   const source = path.join(__dirname, 'template');
   const _files = globby.sync(['**/*'], {
+    dot: true,
     cwd: source,
   });
 
