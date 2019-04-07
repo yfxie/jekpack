@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.3](https://github.com/yfxie/jekpack/compare/v1.3.2...v1.3.3) (2019-04-07)
+
+
+### Bug Fixes
+
+* 🐛 added tzinfo for the other platforms ([0176769](https://github.com/yfxie/jekpack/commit/0176769))
+
+
+
 ## [1.3.2](https://github.com/yfxie/jekpack/compare/v1.3.1...v1.3.2) (2019-04-06)
 
 
