@@ -67,6 +67,7 @@ DEPENDENCIES
   jekyll (~> 3.8.5)
   jekyll-watch
   pry
+  tzinfo-data
 
 BUNDLED WITH
    1.17.2
