@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.5](https://github.com/yfxie/jekpack/compare/v1.3.4...v1.3.5) (2019-05-27)
+
+
+### Bug Fixes
+
+* 🐛 fixed HMR ([bd06135](https://github.com/yfxie/jekpack/commit/bd06135))
+
+
+
 ## [1.3.4](https://github.com/yfxie/jekpack/compare/v1.3.3...v1.3.4) (2019-05-27)
 
 
