@@ -2,7 +2,6 @@ const path = require('path');
 const glob = require('glob');
 
 const getConfigFilePath = require(path.resolve(process.env.JEKPACK_ROOT, 'lib/utils/getConfigFilePath'));
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const ASSET_PATH = path.join(process.env.JEKPACK_CONTEXT, 'src/assets');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -103,7 +102,6 @@ module.exports = {
         '.gitkeep'
       ]
     }),
-    new FixStyleOnlyEntriesPlugin(),
     new MiniCSSExtractPlugin({
       filename: '[name]-[chunkhash].css',
     }),
