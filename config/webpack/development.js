@@ -23,7 +23,6 @@ module.exports = merge(baseConfig, {
     }
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     {
       apply(compiler) {
         compiler.hooks.emit.tapAsync('WatchForChangesPlugin', (compilation, callback) => {
