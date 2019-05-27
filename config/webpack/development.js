@@ -33,5 +33,9 @@ module.exports = merge(baseConfig, {
         });
       },
     }
-  ]
+  ],
+  watchOptions: {
+    ignored: /manifest\.json/
+  },
+
 });
