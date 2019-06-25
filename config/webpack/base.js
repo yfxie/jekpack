@@ -92,14 +92,12 @@ module.exports = {
         from: path.resolve(ASSET_PATH, 'media'),
         to: 'media/[name].[hash].[ext]',
         toType: 'template',
-        transform(content) {
-          return content.toString().replace(/@@(.*\.css|.*\.js)/g, (match, $1) => manifest.assets[$1] || $1);
-        }
       },
     ], {
       ignore: [
         '.DS_Store',
-        '.gitkeep'
+        '.gitkeep',
+        '.keep'
       ]
     }),
     new MiniCSSExtractPlugin({
