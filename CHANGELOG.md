@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.6](https://github.com/yfxie/jekpack/compare/v1.3.5...v1.3.6) (2019-06-25)
+
+
+### Bug Fixes
+
+* 🐛 media assets ([f596408](https://github.com/yfxie/jekpack/commit/f596408))
+
+
+
 ## [1.3.5](https://github.com/yfxie/jekpack/compare/v1.3.4...v1.3.5) (2019-05-27)
 
 
