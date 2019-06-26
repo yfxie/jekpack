@@ -82,10 +82,12 @@ describe('test CLI', () => {
 
   test('the deploy command', () => {
     jest.spyOn(process, 'cwd').mockReturnValue('/abc');
-    jest.mock('s3-easy-deploy', () => ({ deploy: jest.fn(), }));
+    jest.mock('s3-easy-deploy', () => ({ deploy: jest.fn(() => ({ then: jest.fn(fn => fn()) })), }));
+    jest.mock('lib/commands', () => ({ deployRedirectRules: jest.fn(), }));
 
     const s3EasyDeploy = require('s3-easy-deploy');
     const bin = require('bin');
+    const commands = require('lib/commands');
 
     bin.parse(resolveCommand('deploy my-site'));
     expect(s3EasyDeploy.deploy).toHaveBeenCalledWith({
@@ -102,6 +104,9 @@ describe('test CLI', () => {
       acl: 'private',
       cloudFrontId: 'abc',
     });
+
+    bin.parse(resolveCommand('deploy my-site -r redirect-rules.json'));
+    expect(commands.deployRedirectRules).toHaveBeenCalledWith('my-site', '/abc/redirect-rules.json');
   });
 
   test('the check command', () => {
