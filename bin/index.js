@@ -83,6 +83,7 @@ program
   .option('-d, --destination <directory>', 'The destination directory to be uploaded', 'dist')
   .option('-a, --acl <acl>', 'Upload files with specified ACL')
   .option('--cloud-front-id <cloudFrontId>', 'The CloudFront distribution id')
+  .option('-r, --redirect-rules <redirectRules>', 'The path of json file with redirect rules. the json file is an array with { key, to }.')
   .action((bucket, options)=> {
     const publicRoot = path.resolve(process.env.JEKPACK_CONTEXT, options.destination);
     const config = {
@@ -92,7 +93,12 @@ program
       ...(options.acl ? { acl: options.acl } : {}),
       ...(options.cloudFrontId ? { cloudFrontId: options.cloudFrontId } : {}),
     };
-    s3EasyDeploy.deploy(config);
+    s3EasyDeploy.deploy(config).then(() => {
+      if (options.redirectRules) {
+        const filePath = path.resolve(process.env.JEKPACK_CONTEXT, options.redirectRules);
+        return commands.deployRedirectRules(bucket, filePath);
+      }
+    });
   });
 
 program
