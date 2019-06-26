@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.4.0](https://github.com/yfxie/jekpack/compare/v1.3.6...v1.4.0) (2019-06-26)
+
+
+### Features
+
+* redirect rules ([5dd3de5](https://github.com/yfxie/jekpack/commit/5dd3de5))
+
+
+
 ## [1.3.6](https://github.com/yfxie/jekpack/compare/v1.3.5...v1.3.6) (2019-06-25)
 
 
