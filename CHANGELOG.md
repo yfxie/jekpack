@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.5.0](https://github.com/yfxie/jekpack/compare/v1.4.0...v1.5.0) (2019-07-01)
+
+
+### Features
+
+* eval filter ([91740c5](https://github.com/yfxie/jekpack/commit/91740c5))
+
+
+
 # [1.4.0](https://github.com/yfxie/jekpack/compare/v1.3.6...v1.4.0) (2019-06-26)
 
 
