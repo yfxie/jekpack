@@ -94,6 +94,8 @@ module.exports = {
         toType: 'template',
       },
     ], {
+      // always copy for solving the issue of missing assets in manifest after rebuilding
+      copyUnmodified: true,
       ignore: [
         '.DS_Store',
         '.gitkeep',
