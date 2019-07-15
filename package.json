@@ -1,7 +1,7 @@
 {
   "name": "@bincode/jekpack",
   "bin": "./bin/index.js",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
