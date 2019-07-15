@@ -21,6 +21,7 @@
     "fs-extra": "^7.0.1",
     "globby": "^9.1.0",
     "inquirer": "^6.2.2",
+    "js-yaml": "^3.13.1",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",

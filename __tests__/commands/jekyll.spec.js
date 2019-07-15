@@ -3,12 +3,13 @@ const create = require('createTestProject');
 const fs = require('fs-extra');
 
 describe('test the jekyll command', () => {
-  const defaultConfigPath = path.resolve(process.env.JEKPACK_ROOT, 'config/jekyll.yml');
+  let tmpConfigPath;
   let testProject;
 
   beforeEach(async() => {
     testProject = await create('test-commands-jekyll');
     process.env.JEKPACK_CONTEXT = testProject.projectRoot;
+    tmpConfigPath = path.resolve(process.env.JEKPACK_CONTEXT, 'tmp/jekyll.yml');
   });
 
   it('default', async() => {
@@ -20,7 +21,7 @@ describe('test the jekyll command', () => {
 
     expect(execa).toHaveBeenCalledWith(
       'bundle',
-      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${defaultConfigPath}`),
+      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${tmpConfigPath}`),
       expect.any(Object),
     );
   });
@@ -51,7 +52,7 @@ describe('test the jekyll command', () => {
 
     expect(execa).toHaveBeenCalledWith(
       'bundle',
-      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${defaultConfigPath},${hostConfigPath}`),
+      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${tmpConfigPath}`),
       expect.any(Object),
     );
   });
