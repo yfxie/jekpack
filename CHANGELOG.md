@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.2](https://github.com/yfxie/jekpack/compare/v1.6.1...v1.6.2) (2019-07-16)
+
+
+### Bug Fixes
+
+* load host config ([6dfbafe](https://github.com/yfxie/jekpack/commit/6dfbafe))
+
+
+
 ## [1.6.1](https://github.com/yfxie/jekpack/compare/v1.6.0...v1.6.1) (2019-07-16)
 
 
