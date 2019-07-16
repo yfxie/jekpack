@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.1](https://github.com/yfxie/jekpack/compare/v1.6.0...v1.6.1) (2019-07-16)
+
+
+### Bug Fixes
+
+* removed url-loader ([40f7b26](https://github.com/yfxie/jekpack/commit/40f7b26))
+
+
+
 # [1.6.0](https://github.com/yfxie/jekpack/compare/v1.5.3...v1.6.0) (2019-07-16)
 
 
