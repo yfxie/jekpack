@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.6.0](https://github.com/yfxie/jekpack/compare/v1.5.3...v1.6.0) (2019-07-16)
+
+
+### Features
+
+* added more static extensions to file-loader ([289e664](https://github.com/yfxie/jekpack/commit/289e664))
+
+
+
 ## [1.5.3](https://github.com/yfxie/jekpack/compare/v1.5.2...v1.5.3) (2019-07-15)
 
 
