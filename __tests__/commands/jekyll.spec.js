@@ -52,7 +52,7 @@ describe('test the jekyll command', () => {
 
     expect(execa).toHaveBeenCalledWith(
       'bundle',
-      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${tmpConfigPath}`),
+      command2Args(`exec jekyll build -s ${testProject.src} -d ${testProject.dist} -c ${tmpConfigPath},${hostConfigPath}`),
       expect.any(Object),
     );
   });
