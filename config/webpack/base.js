@@ -48,18 +48,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: 'media/[name].[hash:8].[ext]',
-              limit: 4096,
-            },
-          },
-        ]
-      },
-      {
         test: /\.(jpg|jpeg|png|gif|tiff|ico|svg|eot|otf|ttf|woff|woff2)(\?.*)?$/,
         use: [
           {
