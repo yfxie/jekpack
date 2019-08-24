@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.7.0](https://github.com/yfxie/jekpack/compare/v1.6.2...v1.7.0) (2019-08-24)
+
+
+### Features
+
+* upgrade the version of jekyll to 4.0 ([809735e](https://github.com/yfxie/jekpack/commit/809735e))
+
+
+
 ## [1.6.2](https://github.com/yfxie/jekpack/compare/v1.6.1...v1.6.2) (2019-07-16)
 
 
