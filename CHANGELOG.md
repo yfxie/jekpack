@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.8.0](https://github.com/yfxie/jekpack/compare/v1.7.0...v1.8.0) (2019-11-04)
+
+
+### Features
+
+* default .gitignore ([c6b09bf](https://github.com/yfxie/jekpack/commit/c6b09bf))
+* determine the path manifest from webpack output.path ([bbc2fe5](https://github.com/yfxie/jekpack/commit/bbc2fe5))
+* initial scripts ([35e4102](https://github.com/yfxie/jekpack/commit/35e4102))
+
+
+
 # [1.7.0](https://github.com/yfxie/jekpack/compare/v1.6.2...v1.7.0) (2019-08-24)
 
 
