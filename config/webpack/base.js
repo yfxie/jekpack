@@ -67,6 +67,9 @@ module.exports = {
       path.resolve(process.env.JEKPACK_ROOT, 'node_modules'),
     ],
   },
+  resolveLoader: {
+    modules: [path.resolve(process.env.JEKPACK_CONTEXT, 'node_modules'), 'node_modules'],
+  },
   plugins: [
     new ManifestPlugin({
       writeToFileEmit: true,
