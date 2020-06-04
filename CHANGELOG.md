@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/yfxie/jekpack/compare/v1.8.1...v1.8.2) (2020-06-04)
+
+
+### Bug Fixes
+
+* added context root to modules of resolveLoader ([f27f6f3](https://github.com/yfxie/jekpack/commit/f27f6f3cd4ebbfb6c2fe513af2424ac5a4d6a8e2))
+
 ### [1.8.1](https://github.com/yfxie/jekpack/compare/v1.8.0...v1.8.1) (2020-06-04)
 
 # [1.8.0](https://github.com/yfxie/jekpack/compare/v1.7.0...v1.8.0) (2019-11-04)
