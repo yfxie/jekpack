@@ -1,7 +1,7 @@
 {
   "name": "@bincode/jekpack",
   "bin": "./bin/index.js",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "dependencies": {
     "autoprefixer": "^9.4.10",
     "chalk": "^2.4.2",
