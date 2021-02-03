@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/yfxie/jekpack/compare/v1.8.2...v1.9.0) (2021-02-03)
+
+
+### Features
+
+* added jekyllExec command ([3195470](https://github.com/yfxie/jekpack/commit/31954709b734f1730a25ad4c38e3eeb4bf364c5e))
+
 ### [1.8.2](https://github.com/yfxie/jekpack/compare/v1.8.1...v1.8.2) (2020-06-04)
 
 
