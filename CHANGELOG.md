@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/yfxie/jekpack/compare/v1.9.0...v2.0.0) (2022-11-15)
+
+
+### Features
+
+* webpack 5 ([fa8fe24](https://github.com/yfxie/jekpack/commit/fa8fe24daca6c04db5089a12bc4e1258c808cf07))
+
 ## [1.9.0](https://github.com/yfxie/jekpack/compare/v1.8.2...v1.9.0) (2021-02-03)
 
 
