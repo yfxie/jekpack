@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 module.exports = async(startDev, testCB, options = {}) => {
   const URLPattern = /http:\/\/[^/]+\//;
   const JEKYLL_READY_PATTERN = /done in [0-9.]+ seconds/;
-  const WEBPACK_READY_PATTERN = /Compiled successfully/;
+  const WEBPACK_READY_PATTERN = /webpack \d+\.\d+\.\d+ compiled/;
 
   await new Promise((resolve, reject) => {
     const devChild = startDev();

@@ -19,8 +19,9 @@ program
 program
   .command('new <project-name>')
   .option('--force', 'Overwriting if the project directory already exists.')
+  .option('--skip-npm-install', 'Skip npm install.')
   .action((projectName, options) => {
-    const _options = { force: options.force };
+    const _options = { force: options.force, skipNpmInstall: options.skipNpmInstall };
     commands.new(projectName, _options);
   });
 

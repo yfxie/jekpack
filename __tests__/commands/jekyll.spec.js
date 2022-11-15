@@ -34,7 +34,7 @@ describe('test the jekyll command', () => {
     await commands.jekyll(testProject.src, testProject.dist, { watch: true });
     expect(execa).toHaveBeenCalledWith(
       'bundle',
-      expect.arrayContaining(['--watch']),
+      expect.arrayContaining(['build', '--watch']),
       expect.any(Object),
     );
   });

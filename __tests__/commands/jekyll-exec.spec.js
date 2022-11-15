@@ -6,7 +6,7 @@ describe('test the jekyll-exec command', () => {
   let testProject;
 
   beforeEach(async() => {
-    testProject = await create('test-commands-jekyll');
+    testProject = await create('test-commands-jekyll-exec');
     process.env.JEKPACK_CONTEXT = testProject.projectRoot;
     tmpConfigPath = path.resolve(process.env.JEKPACK_CONTEXT, 'tmp/jekyll.yml');
   });

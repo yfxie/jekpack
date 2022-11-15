@@ -5,7 +5,7 @@ const getConfigFilePath = require(path.resolve(process.env.JEKPACK_ROOT, 'lib/ut
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const ASSET_PATH = path.join(process.env.JEKPACK_CONTEXT, 'src/assets');
 const CopyPlugin = require('copy-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -26,6 +26,12 @@ const entryGenerator = () => {
 module.exports = {
   context: process.env.JEKPACK_ROOT,
   entry: entryGenerator,
+  devServer: {
+    allowedHosts: "all",
+    devMiddleware: {
+      writeToDisk: true,
+    },
+  },
   output: {
     publicPath: '/assets/',
   },
@@ -71,13 +77,7 @@ module.exports = {
     modules: [path.resolve(process.env.JEKPACK_CONTEXT, 'node_modules'), 'node_modules'],
   },
   plugins: [
-    new ManifestPlugin({
-      writeToFileEmit: true,
-      map: (file) => {
-        file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
-        return file;
-      },
-    }),
+    new WebpackManifestPlugin({}),
     new CopyPlugin([
       {
         from: path.resolve(ASSET_PATH, 'media'),
